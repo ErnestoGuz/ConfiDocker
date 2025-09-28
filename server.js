@@ -42,7 +42,7 @@ app.use((req, res, next) => {
     next();
 });
 // Conexion a MongoDB
-mongoose.connect('mongodb://localhost:27017/UsuariosDash'
+mongoose.connect('mongodb://host.docker.internal:27017/UsuariosDash'
     ,{
       useNewUrlParser: true,
       useUnifiedTopology: true

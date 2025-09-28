@@ -2,10 +2,11 @@ const mysql = require('mysql2');
 
 // Configurar la conexión
 const connection = mysql.createConnection({
-    host: 'localhost',  // O la IP del servidor MySQL
+    host: 'host.docker.internal',  // O la IP del servidor MySQL
     user: 'root',       // Usuario de MySQL
     password: '',       // Contraseña de MySQL (dejar vacío si no tiene)
-    database: 'dashboard' // Nombre de tu base de datos
+    database: 'dashboard', // Nombre de tu base de datos
+    port: 3306
 });
 
 // Conectar a MySQL
