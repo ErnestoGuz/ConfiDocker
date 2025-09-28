@@ -1,0 +1,138 @@
+<%- include("layout") %>
+
+            <!-- Main Content -->
+            <main class="main">
+                <!-- Contenedor que agrupa el botón y la tabla -->
+                <div class="table-wrapper">
+                    <!-- Contenedor solo para el botón -->
+                    <div class="btn-container">
+                        <form action="/buscar" method="GET">
+                            <div class="buscador">
+                                <button class="icon-button" type="submit">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <input type="text" name="q" id="search-input" placeholder="Buscar tickets...">
+                            </div>
+                        </form>  
+                        <button class="btn-ticket" onclick="openModal('modal')">Nuevo Ticket</button>
+                    </div>
+            
+                    <!-- Contenedor de la tabla -->
+                    <div class="table-container">
+                        <table class="ticket-table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="select-all"></th>
+                                    <th>ID</th>
+                                    <th>Título</th>
+                                    <th>Prioridad</th>
+                                    <th>Empleado</th>
+                                    <th>Estado</th>
+                                    <th>Fecha de Creación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (tickets.length > 0) { %>
+                                    <% tickets.forEach(ticket => { %>
+                                        <tr class="<%= ticket.estado === 'Pendiente' ? 'pendiente' : ticket.estado === 'Asignado' ? 'asignado' : 'resuelto' %>">
+                                            <td><input type="checkbox" class="row-checkbox"></td>
+                                            <td><%= ticket.id %></td>
+                                            <td><%= ticket.nombre_problemas %></td>
+                                            <td><%= ticket.prioridad %></td>
+                                            <td><%= ticket.nombre_empleado %></td>
+                                            <td><%= ticket.estado %></td>
+                                            <td><%= ticket.fecha_creacion %></td>
+                                        </tr>
+                                    <% }); %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="7">No se encontraron tickets.</td>
+                                    </tr>
+                                <% } %>                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>            
+            </div>
+        </div>
+    
+<!-- Modal -->
+<!----Version 2-->
+<div class="modal" id="modal">
+    <div class="modal2-content">
+        <span class="close" onclick="closeModal('modal')">x</span>
+        <h2 class="title-modal2">Registrar Ticket</h2>
+        <div class="avatar"></div>
+        <form class="form" action="/guardar" method="post">
+            <!-- <label for="empleado_id">ID del Empleado:</label>
+            <input type="number" name="empleado_id" id="empleado_id" placeholder="ID del Empleado"> -->
+            <div class="user-details">
+                <div class="input-box">
+                    <span for="nombre_problema" class="details">Titulo del problema:</span>
+                    <input type="text" name="nombre_problema" id="nombre_problema" placeholder="Escribe un titulo..">    
+                </div>
+                <div class="input-box">
+                    <span for="descripcion" class="details">Descripción del problema:</span>
+                    <input type="text" name="descripcion" id="descripcion" placeholder="Escribe una breve descripcion del problema"> 
+                </div>
+                <div class="input-box">
+                    <span for="prioridad" class="details">Prioridad:</span>
+                    <select name="prioridad" id="prioridad">
+                        <option value="" disabled selected>Seleccionar prioridad</option>
+                        <option value="Baja">Baja</option>
+                        <option value="Media">Media</option>
+                        <option value="Alta">Alta</option>
+                    </select>   
+                </div>
+                <div class="input-box">
+                    <span for="estado" class="details">Estado:</span>
+                    <input type="text" name="estado" id="estado" value="Pendiente" readonly>   
+                </div>
+                <div class="input-box">
+                    <span for="fecha_creacion" class="details">Fecha de creación:</span>
+                    <input type="date" name="fecha_creacion" id="fecha_creacion">     
+                </div>
+            </div>
+            <div class="button-modal2">
+                <input type="submit" value="Crear Ticket">
+            </div>
+   
+        </form>
+    </div>
+</div>
+
+<!-- Modal de Usuario -->
+<div id="modal-profile" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-profile')">&times;</span>
+        <h2>Perfil de Usuario</h2>
+        <p>Información del usuario...</p>
+    </div>
+</div>
+        <script>
+            function toggleSidebar() {
+                document.getElementById('sidebar').classList.toggle('active');
+            }
+    
+            function openModal(modalId) {
+                document.getElementById(modalId).style.display = "flex";
+            }
+
+            function closeModal(modalId) {
+                document.getElementById(modalId).style.display = "none";
+            }   
+
+            document.getElementById("search-input").addEventListener("input", function () {
+    if (this.value.trim() === "") {
+        window.location.href = "/creacionticket"; // Redirige a la página principal cuando el campo está vacío
+    }
+});
+function expandSearch() {
+    const searchBox = document.querySelector(".input-box");
+    searchBox.classList.toggle("active");
+}
+
+        </script>
+</body>
+</html>

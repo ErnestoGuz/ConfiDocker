@@ -1,0 +1,87 @@
+<%- include("layout") %>
+<main class="main">
+<!-- Cuadros de resumen -->
+<div class="container2">
+        <div class="box2">
+            <div class="card">
+                <span><i class="fa-solid fa-layer-group"></i></span>
+                <div>
+                    <p>Tickets pendientes:</p>
+                    <h2><%= totalPendientes %></h2>
+                </div>
+            </div>
+            <div class="card">
+                <span><i class="fa-solid fa-envelope"></i></span>
+                <div>
+                    <p>Tickets asignados:</p>
+                    <h2> <%= totalAsignados %></h2>
+                </div>
+            </div>
+            <div class="card">
+                <span><i class="fa-solid fa-check-to-slot"></i></span>
+                <div>
+                    <p>Tickets resueltos:</p>
+                    <h2><%= totalResueltos %></h2>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="orders-container">
+            <h2>Técnicos</h2>
+        
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>Técnico ID</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Fecha de Asignación</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tecnicos.forEach((tecnico) => { %>
+                        <tr>
+                            <!-- Técnico ID -->
+                            <td><%= tecnico.tecnico_id %></td>
+        
+                            <!-- Nombre del Técnico -->
+                            <td><%= tecnico.nombre %></td>
+        
+                            <!-- Estado -->
+                            <td>
+                                <% if (tecnico.estado) { %>
+                                    <%= tecnico.estado %>
+                                <% } else { %>
+                                    Sin asignar
+                                <% } %>
+                            </td>
+        
+                            <!-- Fecha de Asignación -->
+                            <td>
+                                <% if (tecnico.fecha_asignacion) { %>
+                                    <%= new Date(tecnico.fecha_asignacion).toISOString().split('T')[0] %>
+                                <% } else { %>
+                                    No asignado
+                                <% } %>
+                            </td>
+        
+                            <!-- Etiqueta de Estado -->
+                            <td>
+                                <% if (tecnico.estado === 'Completado') { %>
+                                    <span class="status entregado">Completado</span>
+                                <% } else if (tecnico.estado === 'En proceso') { %>
+                                    <span class="status progreso">En Progreso</span>
+                                <% } else { %>
+                                    <span class="status devuelto">Sin Asignar</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+        
+</div>
+</main>

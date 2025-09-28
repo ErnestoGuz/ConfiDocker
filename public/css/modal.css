@@ -1,0 +1,185 @@
+/* modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Asegura que esté por encima del header */
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    z-index: 2001; /* Asegura que el contenido también esté sobre el fondo */
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    grid-column: 2/4;
+}
+/* modal2 css */
+.modal2-content{
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+
+.modal2-content .title-modal2{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+
+.modal2-content .title-modal2::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: #1a5276;
+}
+
+.modal2-content form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+form .user-details .input-box{
+    margin-bottom: 15px;
+    /* margin: 20px 0 12px 0; */
+    width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-details .input-box input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px ;
+    transition: all 0.3s ease;
+}
+
+select{
+    border-radius: 5px;
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+    border-color: #1a5276;
+}
+
+form .button-modal2{
+    height: 45px;
+    margin: 45px 0;
+}
+
+form .button-modal2 input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+form .button-modal2 input:hover{
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6)
+}
+
+.close{
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    font-size: 34px;
+    cursor: pointer;
+    color: red;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+/* modal 3 de eliminar usuario */
+.descriptionDVM{
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    padding: 25px 30px;
+    left: 10%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: rgba(212, 71, 57, 0.4);
+    text-align: center;
+
+}
+
+.separador{
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 15px 0;
+}
+
+.button-modal2{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    
+}
+
+.btn-cerrarDVM, .btn-secondaryDVM{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+}
+
+.btn-cerrarDVM{
+    justify-content: right;
+    background-color: red;
+}
+
+.btn-secondaryDVM{
+    background-color: #1a5276ed;
+}

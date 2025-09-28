@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Jest Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+      "args": [
+        "--runInBand",
+        "--watchAll=false",
+        "--testNamePattern",
+        "${selectedText}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true
+    },
+    {
+      "name": "Debug Current Test File",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+      "args": [
+        "${relativeFile}",
+        "--runInBand",
+        "--watchAll=false"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+<%- include("layout") %>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- <form action="/buscar" method="GET">
+            <div class="buscador">
+                <button class="icon-button" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <input type="text" name="q" id="search-input" placeholder="Buscar tickets...">
+            </div>
+        </form> -->
+        <!-- Botón para abrir el modal -->
+        <div class="btn-container">
+            <form action="/buscar" method="GET">
+                <div class="buscador">
+                    <button class="icon-button" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <input type="text" name="q" id="search-input" placeholder="Buscar tickets...">
+                </div>
+            </form>  
+             <button class="btn-ticket" onclick="openModalRUser()">Registrar Usuario</button> 
+        </div>
+
+        <!-- Tabla de usuarios -->
+        <div class="table-container">
+            <table class="ticket-table" id="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <!-- <th>Contraseña</th> -->
+                        <th>Rol</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- <td>
+                            <button class="green">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+
+                            <button class="red">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td> -->
+                    </tr>
+                    <% data.forEach(row=> {%>
+                        <tr>
+                            <td>
+                                <%= row.id %>
+                            </td>
+                            <td>
+                                <%= row.nombre %>
+                            </td>
+                            <td>
+                                <%= row.nombre_usuario %>
+                            </td>
+                            <td>
+                                <%= row.email %>
+                            </td>
+                            <!-- <td>
+                                <%= row.password %>
+                            </td> -->
+                            <td>
+                                <%= row.rol %>
+                            </td>
+                            <td>
+                                <button onclick="openModalEdit('<%= row.id %>',
+                                 '<%= row.nombre %>', '<%= row.nombre_usuario %>',
+                                 '<%= row.email %>', '<%= row.rol %>' )" class="green">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+
+                                <button onclick="openModalDelete('<%= row.id %>', '<%= row.nombre%>')" class="red">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+
+            </table>
+        </div>
+    </main>
+    </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal2-content">
+            <div class="title-modal2">Registrar Usuario</div>
+
+            <span id="claseModalBtn" onclick="closedModal()" class="close">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <form class="form" action="/validar" method="post">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details" for="">Nombre</span>
+                        <input type="text" placeholder="Nombre" name="name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="">Nombre de usuario</span>
+                        <input type="text" placeholder="Nombre de Usuario" name="name_user" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="">Rol</span>
+                        <select class="" id="rol" name="rol" required>
+                            <option selected>Seleccione un rol</option>
+                            <option value="administrador">Administrador</option>
+                            <option value="tecnico">Tecnico</option>
+                            <option value="empleado">Empleado</option>
+
+                        </select>
+                        <!-- <input type="text" placeholder="Rol de usuario" name="rol" required> -->
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="">Correo</span>
+                        <input type="email" placeholder="Correo" name="email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="">Contraseña</span>
+                        <input type="password" placeholder="Contraseña" name="pass" required>
+                    </div>
+
+                </div>
+                <div class="button-modal2">
+                    <input type="submit" value="Registrar" onclick="createUser()">
+                </div>
+            </form>
+            <!-- <button class="btn" onclick="createUser()">Crear Usuario</button> -->
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal" id="modal2">
+        <div class="modal2-content">
+            <div class="title-modal2">Editar Usuario</div>
+            <span id="claseModalBtn" onclick="closedModal()" class="close">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <form id="editForm" class="form" action="" method="post">
+                <input type="hidden" id="edit-id" name="id">
+
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Nombre Completo</span>
+                        <!-- <label for="">Nombre</label> -->
+                        <input type="text" id="edit-name" name="name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Nombre de usuario</span>
+                        <!-- <label for="">Nombre de usuario</label> -->
+                        <input type="text" id="edit-name-user" name="name_user" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="">Correo</span>
+                        <input type="email" id="edit-email" name="email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Rol</span>
+                        <!-- <label for="">Rol</label> -->
+                        <select class="" id="edit-rol" name="rol" required>
+                            <option selected>Seleccione un rol</option>
+                            <option value="administrador">Administrador</option>
+                            <option value="tecnico">Tecnico</option>
+                            <option value="empleado">Empleado</option>
+
+                        </select>
+                    </div>
+                    <!-- <div class="input-box">
+                        <span class="details">Correo</span>
+                         <label for="">Correo</label> 
+                       <input type="email" placeholder="Correo" name="email"  required>
+                    </div> -->
+
+
+                </div>
+                <div class="button-modal2">
+                    <input type="submit" value="Actualizar">
+                    <!-- <button type="submit">Actualizar</button> -->
+                </div>
+
+            </form>
+            <!-- <button class="btn" onclick="createUser()">Crear Usuario</button> -->
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="modal" id="modal3">
+        <div class="modal2-content">
+            <div class="title-modal2">Confirmar Eliminacion</div>
+            <span onclick="closedModal()" class="close">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <div class="descriptionDVM">
+                <p>¿Desea eliminar el registro de <strong id="usuarioNombre"> </strong> ?</p>
+
+                <input type="hidden" id="usuarioId">
+            </div>
+            <div class="separador"></div>
+
+            <div class="button-modal2">
+                <button class="btn-cerrarDVM" onclick="eliminarUsuario()">Eliminar</button>
+                <button class="btn-secondaryDVM" id="claseModalBtn" onclick="closedModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+        // Regitrar usuarios modal 1
+        function openModalRUser() {
+            document.getElementById("modal").style.display = "flex";
+
+        }
+        // modal 2 para actualizar los datos del usuario
+        function openModalEdit(id, nombre, usuario, correo, rol) {
+            document.getElementById("edit-id").value = id;
+            document.getElementById("edit-name").value = nombre;
+            document.getElementById("edit-name-user").value = usuario;
+            document.getElementById("edit-email").value = correo;
+            document.getElementById("edit-rol").value = rol;
+
+
+            document.getElementById("modal2").style.display = "flex";
+        }
+
+        document.getElementById("editForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let id = document.getElementById("edit-id").value;
+            let nombre = document.getElementById("edit-name").value;
+            let usuario = document.getElementById("edit-name-user").value;
+            let correo = document.getElementById("edit-email").value;
+            let rol = document.getElementById("edit-rol").value;
+
+            fetch(`/actualizar/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: nombre, name_user: usuario, email: correo, rol: rol })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.mensaje);
+                    location.reload();
+                })
+                .catch(error => console.error("Error:", error));
+        })
+
+        // modal 3 eliminar usuarios
+        function openModalDelete(id, nombre) {
+            // abrir modal 3 modal de eliminar usuario
+            document.getElementById("modal3").style.display = "flex";
+            document.getElementById("usuarioId").value = id;
+            document.getElementById("usuarioNombre").innerText = nombre;
+        }
+
+        function eliminarUsuario() {
+            let id = document.getElementById("usuarioId").value;
+
+            fetch(`/eliminar/${id}`, {
+                method: "DELETE",
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.mensaje);
+                    location.reload();
+                })
+                .catch(error => console.error("Error:", error));
+        }
+
+        ///se guarda el usuario nuevo en la base mysql
+        function createUser() {
+            document.getElementById("modal").style.display = "none";
+        }
+        // cierra los  modales
+        function closedModal() {
+            document.getElementById("modal").style.display = "none";
+            document.getElementById("modal2").style.display = "none";
+            document.getElementById("modal3").style.display = "none";
+        }
+    </script>
+    </body>
+
+    </html>

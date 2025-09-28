@@ -1,0 +1,77 @@
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Asegura que esté por encima del header */
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    z-index: 2001;
+    position: relative; /* Necesario para que la X se posicione dentro */
+}
+
+.form {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Primera columna para las etiquetas, segunda para los inputs */
+    gap: 10px 20px; /* Espaciado entre filas y columnas */
+    width: 100%;
+}
+
+.form label {
+    font-weight: bold;
+    align-self: center;
+    text-align: right;
+}
+
+.form input,
+.form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    grid-column: span 2; /* Hace que el botón ocupe toda la fila */
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.close {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #333;
+}
+
+.close:hover {
+    color: red;
+}

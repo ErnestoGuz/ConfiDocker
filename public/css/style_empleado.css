@@ -1,0 +1,164 @@
+/*DISENO DE LAS TABLAS DE TICKETS*/
+/* Contenedor de la tabla */
+.table-container {
+    background: #141a33;
+    border-radius: 12px; 
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 20px auto; /* Espaciado con el contenido */
+    width: 95%;
+    max-width: 1200px;
+    margin-top: 15px; /* Mueve la tabla más abajo */
+    overflow-x: auto; /* Evita desbordamientos */
+}
+
+/* Tabla */
+.ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a2038; /* Azul oscuro intermedio */
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff; /* Texto blanco para mejor contraste */
+}
+
+/* Cabecera */
+.ticket-table thead {
+    background-color: #222945; /* Azul ligeramente más claro */
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+/* Celdas */
+.ticket-table th, .ticket-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+/* Líneas entre filas */
+.ticket-table tbody tr {
+    border-bottom: 1px solid #2c3458; /* Línea azul oscuro */
+}
+
+/* Quitar línea en la última fila */
+.ticket-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Estilo de checkboxes */
+.ticket-table input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
+/* Colores según el estado del ticket */
+/* .ticket-table tbody tr.pendiente {
+    background-color: rgba(192, 57, 43, 0.85); 
+}
+
+.ticket-table tbody tr.asignado {
+    background-color: rgba(230, 188, 20, 0.85); 
+}
+
+.ticket-table tbody tr.resuelto {
+    background-color: rgba(35, 155, 86, 0.85); 
+} */
+
+/* Resaltar fila al pasar el mouse */
+.ticket-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+
+/* Botón */
+.btn-ticket {
+    font-size: 16px;
+    padding: 12px 24px;
+    background: #3652a3; /* Azul más vibrante para mejor contraste */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.btn-ticket:hover {
+    background: #4a6cd6; /* Un tono más claro para el hover */
+    transform: scale(1.08); /* Efecto de agrandamiento más notable */
+}
+
+/* Contenedor general para botón y tabla */
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto; /* Centrarlo horizontalmente */
+}
+
+/* Contenedor del botón */
+.btn-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+    width: 100%;
+    padding-right: 20px; /* Ajuste para alineación con la tabla */
+    margin-top: 10px;
+    margin-bottom: -10px; /* Separa más el botón de la tabla */
+}
+
+.btn-container .buscador{
+    display: flex;
+    justify-content: flex-start; /* Alinea el botón a la derecha */
+    margin-right: 730px; 
+}
+/* Contenedor de la tabla */
+.table-container {
+    background: #141a33;
+    border-radius: 12px; 
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 15px; /* Mueve la tabla más abajo */
+    overflow-x: auto;
+}
+/*FINAL DEL DISENO DE TABLAS*/
+/**/
+.buscador {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    border-bottom: 2px solid #fff;
+    padding: 5px 10px;
+    background: transparent;
+}
+
+.buscador .icon-button {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.buscador .icon-button:hover {
+    color: #ddd;
+}
+
+.buscador input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: #fff;
+    padding: 5px;
+}
+
+.buscador input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}

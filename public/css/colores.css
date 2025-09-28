@@ -1,0 +1,19 @@
+/* colores.css */
+:root {
+    /*@import 'colores';  Utiliza este comando si quieres usar estos colores */
+    --mystic: #D8E8E8;
+    --sinbad: #A8D0DA;
+    --san-marino: #406D96;
+    --picked-blue: #2F3A56;
+    --cinnabar: #E2474B;
+
+    /*ESTILOS DE TABLA*/
+    --Azul-nocturno: #141a33;
+    --Azul-profundo: #1a2038;
+    --Azul-marino: #222945;
+    --Azul-medianoche:#2c3458;
+
+    /*ESTILOS HEADER*/
+    --Azul-oscuro:#1c223f;
+    --Azul-acero:#283061;
+}

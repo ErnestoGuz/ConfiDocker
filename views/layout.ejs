@@ -1,0 +1,69 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%= titulo %></title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/colores.css">
+        <link rel="stylesheet" href="/css/style_empleado.css">
+        <link rel="stylesheet" href="/css/style_modal.css">
+        <link rel="stylesheet" href="/css/modal.css">
+        <link rel="stylesheet" href="/css/userStyle.css">
+        <link rel="stylesheet" href="/css/style_login.css">
+        <link rel="stylesheet" href="/css/estiloAdmin.css">
+        
+        <script src="/script.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <header class="header">
+                <!-- <div class="toggle-menu" onclick="toggleSidebar()">☰</div> -->
+                <!-- <form action="/buscar" method="GET">
+                    <div class="buscador">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="q" id="search-input" placeholder="Buscar tickets...">
+                        <button class="button" type="submit">Search</button>
+                      </div>
+                </form>-->
+                <!-- <form action="/buscar" method="GET">
+                    <div class="buscador">
+                        <button class="icon-button" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <input type="text" name="q" id="search-input" placeholder="Buscar tickets...">
+                    </div>
+                </form> -->
+                
+                <div class="header-icons">
+                    <i class="fas fa-bell"></i>
+                    <i class="fas fa-user-circle" onclick="openModal('modal-profile')"></i>
+                </div>
+            </header>
+            
+            <div class="content">
+                <!-- Sidebar -->
+                <nav class="sidebar" id="sidebar">
+                    <div class="logo-container">
+                        <img src="/images/logo3.png" class="logo-icon" alt="logo icon">
+                        <h5 class="logo-text">Dashtreme Admin</h5>
+                    </div>
+                    <ul class="menu">
+                        <% if (rol === 'empleado') { %>
+                            <li><a href="/creacionticket"><i class="fa-solid fa-house"></i> Principal</a></li>
+                            <li><a href="/logout"><i class="fa-solid fa-right-to-bracket"></i> Logout</a></li>  
+                        <% } else if (rol === 'administrador') { %>
+                            <li><a href="/Administrador"><i class="fa-solid fa-house"></i></i> Dashboard</a></li>
+                            <li><a href="/ticket"><i class="fa-solid fa-ticket"></i></i> Tickets</a></li>
+                            <li><a href="/user"><i class="fa-solid fa-users"></i> Usuarios</a></li>
+                            <li><a href="/logout"><i class="fa-solid fa-right-to-bracket"></i> Logout</a></li>
+                        <% } else if (rol === 'tecnico') { %>
+                            <li><a href="/tickets-asignados"><i class="fa-solid fa-ticket"></i> Tickets Asignados</a></li>
+                            <li><a href="/logout"><i class="fa-solid fa-right-to-bracket"></i> Logout</a></li>  
+                        <% } %>
+                    </ul>                    
+                </nav>
+                

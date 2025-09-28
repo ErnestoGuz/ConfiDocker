@@ -1,0 +1,423 @@
+
+.ticket-contenedor {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px; /* Evita que se expanda demasiado */
+    margin: auto; /* Centrar el contenedor */
+    /* background-color: white; Color de fondo oscuro */
+    padding: 20px;
+    width: 100%;
+    position: relative;  /* Mantiene la posición para elementos hijos con absolute */
+    padding-top: 50px; 
+}
+
+.ticket-contenedor .flex-box {
+    width: 600px; 
+    height: auto; 
+    padding: 15px; 
+    gap: 10px;
+    border-radius: 15px; 
+    background: white; 
+    display: flex;
+    flex-direction: column;    
+}
+
+
+.flex-box h2 {
+    text-align: center; 
+    width: 100%; 
+    margin: 0; 
+}
+
+
+.ticket-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+    background: #d1d1d1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    position: relative;
+    overflow: hidden; /* Para que la barra superior se vea correctamente */
+}
+
+
+.ticket-id {
+    position: absolute;
+    bottom: 0; /* Coloca el ID en la parte inferior */
+    right: 0; /* Coloca el ID al borde derecho */
+    background-color: #283061; /* Color de fondo para destacar el ID */
+    color: white; /* Color del texto */
+    font-size: 14px; /* Tamaño de la fuente */
+    padding: 5px 10px; /* Espaciado alrededor del texto */
+    border-radius: 5px 0 0 5px; /* Bordes redondeados solo en la parte inferior */
+    font-weight: bold;
+    z-index: 1; /* Asegura que el texto esté encima del contenido */
+}
+.priority-bar {
+    width: 100%;
+    height: 40px; /* Grosor de la barra */
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center; /* Centra el texto horizontalmente */
+    align-items: center; /* Centra el texto verticalmente */
+    border-radius: 10px 10px 0 0; /* Bordes redondeados solo en la parte superior */
+    margin-bottom: 10px;
+}
+.priority-text {
+    position: absolute;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+.urgente-bar {
+    background: #f41049;
+}
+
+.media-bar {
+    background: #f47e10;
+}
+
+.baja-bar {
+    background: #50c6e3;
+}
+
+.icono {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+    font-size: 24px;
+    gap: 15px;
+}
+
+.icono i {
+    font-size: 45px; /* Aumentar el tamaño del icono */
+}
+.icono p {
+    margin: 0;
+    font-size: 20px;
+}
+
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+
+.ticket-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
+}
+
+
+
+.ticket-details h3 {
+    margin: 0;
+    font-size: 18px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.ticket-details h5 {
+    margin: 0;
+    text-align: right;
+    color: #555;
+}
+
+
+.ticket-contenedor .btn {
+    background-color: #283061;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    gap: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-self: flex-end;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+.btn:hover {
+    background-color: #563d7c;
+}
+
+
+.ticket-buttons .btn {
+    flex: 1;
+    background-color: #6a4caf;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Si el texto es largo, se agrega '...' al final */
+    height: 45px;
+}
+
+.ticket-buttons .detalles-btn {
+    margin-right: 10px; /* Añadido para separar los botones */
+}
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre los botones */
+    gap: 10px; /* Espacio entre los botones */
+    width: 100%;
+}
+
+.button-container .btn {
+    flex: 1; /* Asegura que ambos botones ocupen el mismo espacio */
+    text-align: center;
+    display: inline-flex; /* Asegura que los elementos dentro del botón se alineen correctamente */
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+}
+
+
+/* Modal */
+.ticket-contenedor .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 500px;
+    text-align: center;
+}
+.modal-content .btn-modal{
+    background-color: #4cae57;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.urgente {
+   
+    font-weight: bold;
+}
+
+.media {
+    
+    font-weight: bold;
+}
+
+.baja {
+  
+    font-weight: bold;
+}
+
+
+/* css del dashboard general de administrador */
+.container2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+   padding: 20px;
+   gap: 70px;
+   align-items: center; /* Centra los elementos horizontalmente */
+   justify-content: center; /* Centra los elementos verticalmente */
+}
+
+.box2 {
+    display: grid;
+    grid-template-columns: repeat(3, 280px); /* 3 columnas de 280px */
+    gap: 50px;
+    width: 100%;
+    min-height: 90px;  
+    max-height: 150px;
+    justify-content: center; /* Centra las columnas dentro de .box2 */
+
+}
+
+.card {
+    background: #6a4caf;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card span {
+    font-size: 30px;
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.orders-container {
+    background: #f9ecff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    position: relative; /* Para posicionar el botón */
+}
+
+/* Título de la tabla */
+.orders-container h2 {
+    color: #1c223f;
+    margin-bottom: 20px;
+}
+
+/* Botón "Ver todos" */
+.btn-ver-todos {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #9a58c2;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-ver-todos:hover {
+    background: #7d3aa4;
+}
+
+/* Tabla */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Encabezados de la tabla */
+.orders-table thead tr {
+    text-align: left;
+    color: #1c223f;
+}
+
+/* Celdas */
+.orders-table th, .orders-table td {
+    padding: 12px 15px;
+}
+
+
+/* Filas */
+.orders-table tbody tr {
+    border-top: 1px solid #e1d5f5;
+}
+
+/* Etiquetas de estatus */
+.status {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* .pendiente {
+    background: #ffe600;
+    color: #8a6d00;
+} */
+
+.devuelto {
+    background: #ff5e6c;
+    color: white;
+}
+
+.progreso {
+    background: #7bc5ff;
+    color: #004085;
+}
+
+.entregado {
+    background: #9eff96;
+    color: #007f00;
+}
+
+/* Responsividad */
+@media (min-width: 1200px) {
+    .dashboard-container {
+        grid-template-columns: 1fr 2fr; 
+    }
+}
+
+@media (max-width: 768px) {
+    .orders-table thead {
+        display: none; /* Oculta el encabezado en pantallas pequeñas */
+    }
+
+    .orders-table, .orders-table tbody, .orders-table tr, .orders-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .orders-table tr {
+        margin-bottom: 15px;
+    }
+
+    .orders-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .orders-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+    }
+}

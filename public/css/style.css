@@ -1,0 +1,165 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: linear-gradient(to bottom, #1c223f, #283061 );
+    color: #b4b6b9;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra todo el contenido */
+    padding-top: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Logo */
+.logo-icon {
+    width: 65px; /* Tamaño más grande para mejor visibilidad */
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Contenedor del logo para centrarlo */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra en el eje Y */
+    width: 100%;
+    margin-bottom: 15px; /* Espacio entre el logo y el menú */
+    margin-top: -10px; /* Mueve el logo más arriba */
+}
+
+/* Texto "Dashtreme Admin" */
+.logo-text {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Asegura que el menú siga el flujo sin problemas */
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+
+.sidebar .menu li {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.sidebar .menu li a {
+    color: #b4b6b9;
+    text-decoration: none;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.sidebar .menu li i {
+    font-size: 18px;
+    width: 25px;
+    text-align: center;
+    color: #b4b6b9;
+}
+
+.sidebar .menu li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid white;
+    padding-left: 6px;
+}
+
+.sidebar .menu li:hover a,
+.sidebar .menu li:hover i {
+    color: white;
+}
+/* Header */
+.header {
+    background: linear-gradient(to left,#283061,#1c223f );
+    color: #b4b6b9;
+    padding: 10px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 220px);
+    position: fixed;
+    top: 0;
+    left: 220px;
+    z-index: 1000;
+    height: 65px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header-icons {
+    display: flex;
+    align-items: flex-end;
+    margin-left: auto;
+}
+
+.header-icons i {
+    font-size: 25px;
+    margin-left: 25px;
+    cursor: pointer;
+    color: #b4b6b9;
+}
+
+.header-icons i:hover {
+    color: #e3e3e3;
+}
+
+/* Main Content */
+.content {
+    display: flex;
+    flex: 1;
+    margin-left: 220px;
+    transition: margin-left 0.3s ease;
+    padding-top: 53px;
+    width: calc(100% - 220px);
+    margin-top: 0;
+}
+
+.main {
+    flex: 1;
+    width: 100%;
+    padding: 20px; /* Espaciado interno */
+    box-sizing: border-box; /* Asegura que padding no afecte el tamaño total */
+    background: linear-gradient(to bottom, #283061, #1c223f); /* Degradado de arriba hacia abajo */
+    overflow: auto; /* Permite desplazamiento si la tabla es muy ancha */
+}

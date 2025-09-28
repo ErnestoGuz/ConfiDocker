@@ -1,0 +1,166 @@
+<%- include("layout") %>
+<main class="main">
+
+    <div class="ticket-contenedor">
+        <% if (tickets.length > 0) { %>
+            <% tickets.forEach(ticket => { %>
+                <div class="ticket-card">
+                    <div class="priority-bar 
+                        <% if (ticket.prioridad === 'Alta') { %> urgente-bar <% } %>
+                        <% if (ticket.prioridad === 'Media') { %> media-bar <% } %>
+                        <% if (ticket.prioridad === 'Baja') { %> baja-bar <% } %>
+                    ">
+                        <% if (ticket.prioridad === 'Alta') { %>
+                            <span class="priority-text">Prioridad Urgente</span>
+                        <% } else if (ticket.prioridad === 'Media') { %>
+                            <span class="priority-text">Prioridad Media</span>
+                        <% } else if (ticket.prioridad === 'Baja') { %>
+                            <span class="priority-text">Prioridad Baja</span>
+                        <% } %>
+                    </div>
+    
+                    <div class="ticket-info">         
+                        <div class="ticket-details">
+                            <h2><%= ticket.nombre_problemas %></h2>
+                            <!-- <p><strong>Descripción:</strong> <%= ticket.descripcion %></p> -->
+                            <td>
+                                <% if (ticket.estado === 'En proceso') { %>
+                                    <span class="status progreso">Resuelve el ticket</span>
+                                <% } else { %>
+                                    <%= ticket.estado %>
+                                <% } %>
+                            </td>
+                            <div class="button-container">
+                                <button class="btn detalles-btn" onclick="AbrirDetallesModal('<%= ticket.id %>')">
+                                    <i class="fa-solid fa-eye"></i> Ver detalles
+                                </button>
+                            </div>
+                            <h5><%= ticket.fecha_asignacion %></h5>
+                        </div>
+                    </div>
+                    <span class="ticket-id">#<%= ticket.id %></span>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No hay tickets pendientes.</p>
+        <% } %>
+    </div>
+
+<!-- Modal para Ver Detalles -->
+<div class="modal" id="ticketModal">
+    <div class="modal2-content">
+        <div class="title-modal2">Detalles del ticket</div>
+        <span id="claseModalBtn" onclick="closeModal()" class="close">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+        <form id="detallesForm">
+            <div class="user-details">
+                <div class="input-box">
+                    <label for="modal-nombre-problema">Nombre del problema:</label>
+                    <span id="modal-nombre-problema" class="details"></span>
+
+                    <label for="modal-descripcion">Descripción:</label>
+                    <span id="modal-descripcion" class="details"></span>
+
+                    <label for="modal-fecha-creacion">Fecha de creación:</label>
+                    <span id="modal-fecha-creacion" class="details"></span>
+                </div>
+            </div>
+        </form> 
+    </div>
+</div>
+
+<script>
+    function AbrirModal(ticketId) {
+        document.getElementById("modal").style.display = "flex";
+        document.getElementById("asignarForm").action = "/asignar/" + ticketId;
+    }
+    function AbrirDetallesModal(ticketId) {
+        // Obtener el ticket por ID
+        fetch(`/ticket/${ticketId}`)
+            .then(response => response.json())
+            .then(ticket => {
+                // Llenar los campos del modal con los datos del ticket
+                document.getElementById("modal-nombre-problema").textContent = ticket.nombre_problemas;
+                document.getElementById("modal-descripcion").textContent = ticket.descripcion || "Sin descripción disponible";
+                document.getElementById("modal-fecha-creacion").textContent = ticket.fecha_creacion;
+    
+                // Mostrar el modal de detalles
+                document.getElementById("ticketModal").style.display = "flex";
+            })
+            .catch(error => {
+                console.error('Error al obtener el ticket:', error);
+            });
+    }
+    
+    function closeModal() {
+        document.getElementById("ticketModal").style.display = "none";
+    }
+
+    function marcarComoCompletado(ticketId) {
+    // Realizar la solicitud para cambiar el estado del ticket a "Completado"
+    fetch(`/ticket/completar/${ticketId}`, {
+        method: 'PUT', // Usamos PUT para actualizar el estado del ticket
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            estado: 'Completado' // Cambiar estado a completado
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Cerrar el modal
+            closeModal();
+
+            // Actualizar la interfaz de usuario (por ejemplo, cambiar el estado en la tabla)
+            alert("Ticket marcado como completado.");
+            location.reload(); // Recargar la página para mostrar los cambios
+        } else {
+            alert("Hubo un error al marcar el ticket como completado.");
+        }
+    })
+    .catch(error => {
+        console.error('Error al actualizar el ticket:', error);
+        alert("Hubo un error al procesar la solicitud.");
+    });
+}
+
+    </script>
+    <!-- Tabla de tickets asignados -->
+<!-- <div class="orders-container">
+    <h3>Tickets Asignados</h3>
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>ID del Ticket</th>
+                <th>Problema</th>
+                <th>Descripción</th>
+                <th>Prioridad</th>
+                <th>Estado</th>
+                <th>Fecha de Asignación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tickets.forEach(function(ticket) { %>
+                <tr>
+                    <td><%= ticket.id %></td>
+                    <td><%= ticket.nombre_problemas %></td>
+                    <td><%= ticket.descripcion %></td>
+                    <td><%= ticket.prioridad %></td>
+                    <td>
+                        <% if (ticket.estado === 'En proceso') { %>
+                            <span class="status progreso">En Proceso</span>
+                        <% } else { %>
+                            <%= ticket.estado %>
+                        <% } %>
+                    </td>
+                    <td><%= ticket.fecha_asignacion %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div> -->
+</main>
+
