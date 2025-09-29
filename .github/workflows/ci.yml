@@ -24,4 +24,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: netoguzman/dashboard-app:latest
+          tags: ernestoguz/dashboard-app:latest
