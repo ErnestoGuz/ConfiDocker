@@ -1,22 +1,29 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise'); // versión con promesas
 
-// Configurar la conexión
-const connection = mysql.createConnection({
-    host: 'host.docker.internal',  // O la IP del servidor MySQL
-    user: 'root',       // Usuario de MySQL
-    password: '',       // Contraseña de MySQL (dejar vacío si no tiene)
-    database: 'dashboard', // Nombre de tu base de datos
-    port: 3306
-});
+// Crear la conexión
+let connection;
 
-// Conectar a MySQL
-connection.connect((err) => {
-    if (err) {
-        console.error('Error de conexión:', err);
-        return;
-    }
+async function conectar() {
+  if (!connection) {
+    connection = await mysql.createConnection({
+      host: 'host.docker.internal', // o IP real del servidor
+      user: 'root',
+      password: '',
+      database: 'dashboard',
+      port: 3306
+    });
     console.log('Conexión a MySQL establecida');
-});
+  }
+  return connection;
+}
 
-// Exportar la conexión
-module.exports = connection;
+// Cerrar la conexión
+async function desconectar() {
+  if (connection) {
+    await connection.end();
+    console.log('Conexión cerrada');
+    connection = null;
+  }
+}
+
+module.exports = { conectar, desconectar };
