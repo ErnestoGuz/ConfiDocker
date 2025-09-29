@@ -2,7 +2,7 @@ name: CI - Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]   # o la rama que uses
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -14,7 +14,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Pruebas
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
         run: npm test -- --coverage
 
       - name: Login to Docker Hub
